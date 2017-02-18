@@ -1,9 +1,8 @@
-var app = angular.module('flapperNews', []);
+var app = angular.module('News', []);
 
 app.controller('MainCtrl', [
     '$scope',
     function ($scope) {
-        $scope.test = 'Hello world!';
         $scope.posts = [
             {title: 'Lorem ipsum dolor sit amet', upvotes: 5},
             {title: 'tempor incididunt ut labore', upvotes: 2},
