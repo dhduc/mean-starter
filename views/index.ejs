@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="javascripts/main.js"></script>
+</head>
+<body ng-app="flapperNews" ng-controller="MainCtrl">
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+        <div class="page-header">
+            <h1><%= title %></h1>
+            <p>Welcome to <%= title %></p>
+        </div>
+
+        <div ng-repeat="post in posts | orderBy:'-upvotes'">
+        <span class="glyphicon glyphicon-thumbs-up"
+              ng-click="incrementUpvotes(post)"></span>
+            {{post.upvotes}}
+            <span style="font-size:20px; margin-left:10px;">
+          <a ng-show="post.link" href="{{post.link}}">
+            {{post.title}}
+          </a>
+          <span ng-hide="post.link">
+            {{post.title}}
+          </span>
+        </span>
+        </div>
+
+        <form ng-submit="addPost()"
+              style="margin-top:30px;">
+            <h3>Add a new post</h3>
+
+            <div class="form-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Title"
+                       ng-model="title"></input>
+            </div>
+            <div class="form-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Link"
+                       ng-model="link"></input>
+            </div>
+            <button type="submit" class="btn btn-primary"><span class="fa fa-fw fa-plus"></span>Post</button>
+        </form>
+
+    </div>
+</div>
+</body>
 </html>
