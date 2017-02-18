@@ -12,16 +12,29 @@
 
     <!-- JS -->
     <script src="javascripts/lib/angular.min.js"></script>
+    <script src="javascripts/lib/angular-route.min.js"></script>
     <script src="javascripts/main.js"></script>
 </head>
 <body ng-app="News" ng-controller="MainCtrl">
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-
-        <div class="page-header">
-            <h1><%= title %></h1>
-            <p>Welcome to <%= title %></p>
+    <div class="page-header">
+        <h1><%= title %></h1>
+        <p>Welcome to <%= title %></p>
+    </div>
+    <!-- HEADER -->
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Homepage</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/posts">Posts</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+
 
         <div ng-repeat="post in posts | orderBy:'-upvotes'">
         <span class="glyphicon glyphicon-thumbs-up"

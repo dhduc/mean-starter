@@ -1,8 +1,17 @@
 var app = angular.module('News', []);
 
+app.factory('posts', [function(){
+    var o = {
+        posts: []
+    };
+    return o;
+}]);
+
 app.controller('MainCtrl', [
     '$scope',
-    function ($scope) {
+    'posts',
+    function ($scope, posts) {
+        $scope.posts = posts.posts;
         $scope.posts = [
             {title: 'Lorem ipsum dolor sit amet', upvotes: 5},
             {title: 'tempor incididunt ut labore', upvotes: 2},
