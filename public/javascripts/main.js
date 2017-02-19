@@ -8,6 +8,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         .when('/', {
             templateUrl: '/views/index/home.html',
             controller: 'HomeCtrl'
+        })
+        .when('/posts', {
+            templateUrl: '/views/posts/index.html',
+            controller: 'PostCtrl'
         });
 
     $locationProvider.html5Mode({
@@ -21,5 +25,12 @@ app.controller('HomeCtrl', [
     '$scope',
     function ($scope) {
         $scope.page_title = 'Homepage';
+    }
+]);
+
+app.controller('PostCtrl', [
+    '$scope',
+    function ($scope) {
+        $scope.page_title = 'Posts Page';
     }
 ]);
