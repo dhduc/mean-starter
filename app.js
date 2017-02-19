@@ -1,9 +1,14 @@
 var express = require('express');
+var config = require('./config/config');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var compress = require('compression');
+var methodOverride = require('method-override');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -19,13 +24,29 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+if (process.env.NODE_ENV === 'development') {
+    app.use(logger('dev'));
+} else if (process.env.NODE_ENV === 'production') {
+    app.use(compress());
+}
+
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'images/favicon.ico')));
-app.use(logger('dev'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Session
+app.use(cookieParser());
+app.use(session({
+    secret: config.sessionSecret,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: !true }
+}));
 
 app.use('/', index);
 app.use('/users', users);
