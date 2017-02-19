@@ -1,4 +1,26 @@
-var app = angular.module('News', []);
+var app = angular.module('News', ['ngRoute']);
+
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
+    $routeProvider
+
+        // home page
+        .when('/', {
+            templateUrl: '/views/index/home.html',
+            controller: 'MainCtrl'
+        })
+
+        .when('/hello', {
+            templateUrl: '/views/index/hello.html',
+            controller: 'MainCtrl'
+        });
+
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+
+}]);
 
 app.factory('posts', [function(){
     var o = {
@@ -12,6 +34,7 @@ app.controller('MainCtrl', [
     'posts',
     function ($scope, posts) {
         $scope.posts = posts.posts;
+        $scope.name = "News";
         $scope.posts = [
             {title: 'Lorem ipsum dolor sit amet', upvotes: 5},
             {title: 'tempor incididunt ut labore', upvotes: 2},
