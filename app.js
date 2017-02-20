@@ -14,10 +14,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
 
-var mongoose = require('mongoose');
-require('./models/Posts');
-mongoose.connect('mongodb://localhost/news');
-
+var mongoose = require('./config/mongoose');
+var db = mongoose();
 var app = express();
 
 // view engine setup
