@@ -21,6 +21,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 }]);
 
+app.factory('Posts', [function () {
+    var object = {
+        posts: []
+    };
+
+    return object;
+}]);
+
 app.controller('HomeCtrl', [
     '$scope',
     function ($scope) {
@@ -30,7 +38,32 @@ app.controller('HomeCtrl', [
 
 app.controller('PostCtrl', [
     '$scope',
-    function ($scope) {
+    'Posts',
+    function ($scope, Posts) {
         $scope.page_title = 'Posts Page';
+        $scope.posts = Posts.posts;
+        $scope.posts = [
+            {title: 'Lorem ipsum dolor sit amet', upvotes: 5},
+            {title: 'Tempor incididunt ut labore et', upvotes: 2},
+            {title: 'Quis nostrud exercitation', upvotes: 12},
+            {title: 'Duis aute irure dolor', upvotes: 15},
+            {title: 'Cillum dolore eu fugiat', upvotes: 10},
+            {title: 'Sunt in culpa qui officia', upvotes: 35}
+        ];
+
+        $scope.addPost = function () {
+            if (!$scope.title || $scope.title === '') {
+                return;
+            }
+            $scope.posts.push({
+                title: $scope.title,
+                upvotes: 0
+            });
+            $scope.title = '';
+        };
+
+        $scope.incrementUpvotes = function (post) {
+            post.upvotes += 1;
+        };
     }
 ]);

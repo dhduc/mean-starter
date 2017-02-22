@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body ng-app="News">
+
+    <% include partials/header.ejs %>
+
+    <!-- Begin page content -->
+    <div class="container">
+
+        <div class="page-header">
+            <h1><%= title %></h1>
+            <p>Welcome to <%= title %></p>
+        </div>
+
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>
+    </div>
+
+    <% include partials/footer.ejs %>
+
+</body>
+</html>

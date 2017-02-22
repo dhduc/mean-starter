@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
 
 var PostSchema = new Schema({
     title: String,
-    link: String,
     upvotes: {type: Number, default: 0}
 });
 
