@@ -6,11 +6,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
         // home page
         .when('/', {
-            templateUrl: '/views/index/home.html',
+            templateUrl: '/templates/index/home.html',
             controller: 'HomeCtrl'
         })
         .when('/posts', {
-            templateUrl: '/views/posts/index.html',
+            templateUrl: '/templates/posts/index.html',
             controller: 'PostCtrl'
         });
 
