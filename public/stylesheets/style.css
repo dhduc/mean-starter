@@ -3,10 +3,9 @@ html {
     min-height: 100%;
 }
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    padding: 10px 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height: 100%;
+    font-family: Roboto;
+    background: #FFFFFF;
 }
 a {
     color: #00B7FF;
@@ -37,4 +36,24 @@ body > .container {
 }
 code {
     font-size: 80%;
+}
+
+/* Header */
+.navbar {
+    background: #FFFFFF;
+    padding: 10px;
+    border-bottom: 1px solid #E8E8E8;
+    position: fixed;
+    margin-bottom: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    background: #FFFFFF;
 }
