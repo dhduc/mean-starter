@@ -24,7 +24,7 @@ exports.index = function(req, res, next) {
 
 exports.seeder = Posts.find({}).exec(function (err, collection) {
     if (collection.length === 0) {
-        Posts.create({ title: 'Lorem ipsum dolor sit amet', upvotes: 10 });
-        Posts.create({ title: 'Tempor incididunt ut labore', upvotes:20 });
+        Posts.create({ title: 'Lorem ipsum dolor sit amet', contents: 'Tempor incididunt ut labore' });
+        Posts.create({ title: 'Tempor incididunt ut labore', contents: 'Lorem ipsum dolor sit amet' });
     }
 });
