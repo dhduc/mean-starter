@@ -9,10 +9,12 @@ var morgan = require('morgan');
 var compress = require('compression');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var flash = require('express-flash');
 
 var index = require('./app/routes/index');
 var users = require('./app/routes/users');
 var posts = require('./app/routes/posts');
+var contact = require('./app/routes/contact');
 
 var mongoose = require('./config/mongoose');
 var db = mongoose();
@@ -45,10 +47,12 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: !true }
 }));
+app.use(flash);
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/posts', posts);
+app.use('/contact', contact);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
