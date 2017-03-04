@@ -8,9 +8,8 @@ exports.create = function(req, res, next) {
     req.assert('message', 'Message cannot be blank').notEmpty();
 
     const errors = req.validationErrors();
-
     if (errors) {
-        req.flash('errors', errors);
+        // req.flash('errors', errors);
         return res.redirect('/contact');
     }
 };

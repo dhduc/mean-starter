@@ -10,6 +10,7 @@ var compress = require('compression');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var flash = require('express-flash');
+var expressValidator = require('express-validator');
 
 var index = require('./app/routes/index');
 var users = require('./app/routes/users');
@@ -38,6 +39,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressValidator());
 
 // Session
 app.use(cookieParser());
@@ -47,7 +49,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: !true }
 }));
-app.use(flash);
+// app.use(flash);
 
 app.use('/', index);
 app.use('/users', users);
