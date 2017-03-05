@@ -6,6 +6,8 @@ var contactCtrl = require('../controllers/contact');
 /* GET contact page. */
 router.get('/', contactCtrl.index);
 
-router.post('/', contactCtrl.create);
+router.use(contactCtrl.middle);
+
+router.post('/', contactCtrl.add);
 
 module.exports = router;

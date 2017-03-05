@@ -17,3 +17,12 @@ exports.create = function(req, res, next) {
 exports.index = function(req, res, next) {
     res.render('contact/index', { title: 'Contact' });
 };
+
+exports.middle = function (req, res, next) {
+    console.log('start at ' + Date.now());
+    next();
+};
+
+exports.add = function (req, res) {
+    res.send('add new contact');
+};
