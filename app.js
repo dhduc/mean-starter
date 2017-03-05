@@ -23,7 +23,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, './app/views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 if (process.env.NODE_ENV === 'development') {
     app.use(logger('dev'));
@@ -71,7 +71,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('pages/error');
+  res.render('pages/errors');
 });
 
 module.exports = app;

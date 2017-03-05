@@ -2,7 +2,7 @@ require('../models/Posts');
 var mongoose = require('mongoose');
 var Posts = mongoose.model('Posts');
 
-exports.create = function(req, res, next) {
+exports.add = function(req, res, next) {
     var posts = new Posts(req.body);
     user.save(function(err) {
         if (err) {
@@ -18,7 +18,7 @@ exports.index = function(req, res, next) {
     Posts.find(function(err, posts){
         if(err){ return next(err); }
 
-        res.render('posts', { title: 'Posts', posts: posts });
+        res.render('posts/index', { title: 'Posts', posts: posts });
     });
 };
 

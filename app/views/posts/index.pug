@@ -1,0 +1,6 @@
+extends ../partials/layout
+
+block content
+    ul.list-group
+        each post in posts
+            li #{post.title}

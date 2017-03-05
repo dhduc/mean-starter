@@ -3,5 +3,5 @@ exports.index = function(req, res, next) {
         console.log(req.session.lastVisit);
     }
     req.session.lastVisit = new Date();
-    res.render('index', { title: 'Express' });
+    res.render('home/index', { title: 'Express' });
 };

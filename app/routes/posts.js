@@ -6,6 +6,6 @@ var postsCtrl = require('../controllers/posts');
 /* GET posts page. */
 router.get('/', postsCtrl.index);
 
-router.put('/create', postsCtrl.create);
+router.put('/create', postsCtrl.add);
 
 module.exports = router;
