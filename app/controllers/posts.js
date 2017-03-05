@@ -18,7 +18,7 @@ exports.index = function(req, res, next) {
     Posts.find(function(err, posts){
         if(err){ return next(err); }
 
-        res.json(posts);
+        res.render('posts', { title: 'Posts', posts: posts });
     });
 };
 
