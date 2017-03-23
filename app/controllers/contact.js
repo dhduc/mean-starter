@@ -32,8 +32,15 @@ exports.add = function (req, res) {
     const errors = req.validationErrors();
 
     if (errors) {
-        // req.flash('errors', errors);
         return res.redirect('/contact');
-        // res.json(errors);
     }
+
+    // Prepare output in JSON format
+    var response = {
+        name:req.body.name,
+        email:req.body.email,
+        message:req.body.message
+    };
+
+    res.end(JSON.stringify(response));
 };
