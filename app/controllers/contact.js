@@ -23,24 +23,28 @@ exports.middle = function (req, res, next) {
     next();
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.add = function (req, res) {
-    // res.send('add new contact');
-    req.assert('name', 'Name cannot be blank').notEmpty();
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('message', 'Message cannot be blank').notEmpty();
-
-    const errors = req.validationErrors();
-
-    if (errors) {
-        return res.redirect('/contact');
+    // Save data
+    var contactInfo = req.body; //Get the parsed information
+    if (!contactInfo.name || !contactInfo.email || !contactInfo.message) {
+        res.render('pages/results', {title: 'Error', message: "Sorry, you provided wrong info", type: "error"});
     }
-
-    // Prepare output in JSON format
-    var response = {
-        name:req.body.name,
-        email:req.body.email,
-        message:req.body.message
-    };
-
-    res.end(JSON.stringify(response));
+    else {
+        var newContact = new Contact({
+            name: contactInfo.name,
+            email: contactInfo.email,
+            message: contactInfo.message
+        });
+        newContact.save(function(err){
+            if(err)
+                res.render('pages/results', {title: 'Error', message: "Database error", type: "error"});
+            else
+                res.render('pages/results', {title: 'Success', message: "New contact added", type: "success", contact: contactInfo});
+        });
+    }
 };
